@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- <package name="defaultone" extends="struts-default" >
+		 <interceptors>
+			
+		 </interceptors>
+		 配置默认的拦截器被拦截后跳转的jsp
+		<default-interceptor-ref name="aaabbb"></default-interceptor-ref>
+		<global-results>
+			<result name="login" type="redirect">/index.jsp</result>
+		</global-results>
+		
+	</package> -->
+	
+	<package name="default" extends="struts-default" >
+		 
+		 <interceptors>		
+			<interceptor name="sessInter" class="com.YPGAction.LanJieQi">
+				<param name="includeMethods">fang,chaxun,fenye22,<!-- finanaceconfirm, -->select1,select,fenye1,shen,geren,Reviewprojectservlet,ringName,update,save,select11,queryYPG,delete,show,showRole,showAuth1</param><!-- 拦截的方法 -->
+			</interceptor>
+			<!-- 构建一个拦截器栈 -->
+			<interceptor-stack name="aaabbb">
+				<interceptor-ref name="sessInter"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			
+		</interceptors>
+		<!-- 配置默认的拦截器被拦截后跳转的jsp -->
+		<default-interceptor-ref name="aaabbb"></default-interceptor-ref>
+		<global-results>
+			<result name="login" type="redirect">/index.jsp</result>
+			<result name="quanxian" type="redirect">/bootstrap/quanxian.jsp</result>
+		</global-results>
+		 
+		<!--  <action name="employ_*" class="com.YPGQXAction.StrutsAction" method="{1}">
+			<result name="okk">/bootstrap/houtai.jsp</result>
+			<result name="logn" type="redirect">/index.jsp</result>
+		</action> -->
+		<!--  <action name="empTT_*" class="com.YPGAction.LoginAction" method="{1}">
+			<result name="booSS">/bootstrap/houtai.jsp</result>
+			<result name="caiw">/bootstrap/houtai.jsp</result>
+			<result name="zhiX">/bootstrap/houtai.jsp</result>
+			<result name="shenJ">/bootstrap/houtai.jsp</result>
+			<result name="puT">/bootstrap/houtai.jsp</result>
+			<result name="renL">/bootstrap/houtai.jsp</result>
+		</action> --> 
+		
+		<!-- 登录验证 -->
+		<action name="employ_*" class="com.TMZRingUp.RingupAction" method="{1}">
+			<result name="error">/bootstrap/denglu.jsp</result>
+			<result name="success">/bootstrap/houtai.jsp</result>
+			<result name="SelectProjectMoney">/bootstrap/chaxun1.jsp</result>
+		</action>
+		<!-- 分页查询验证 -->
+		<action name="fy_*" class="com.TMZfenye.Action" method="{1}">
+			<result name="fenye">/bootstrap/houtai.jsp</result>
+		</action>
+		<!-- 用户管理验证 -->
+		<action name="sturts_*" class="com.YPGAction.Struts" method="{1}">
+			<!-- <result name="save">/bootstrap/role.jsp</result> -->
+			<result name="que">/bootstrap/UserSearch.jsp</result>
+			<result name="off">/bootstrap/role.jsp</result>
+			<!-- <result name="ok">/bootstrap/role.jsp</result> 
+			<result name="dele">/bootstrap/role.jsp</result>  -->
+		</action>
+		<!-- 员工管理验证 -->
+		<action name="emp_*" class="com.YPGAction.Struts" method="{1}">
+			<result name="shlist">/bootstrap/employee.jsp</result>
+			<result name="employ">/bootstrap/EmployeeSearch.jsp</result>
+			<result name="empy">/bootstrap/employee.jsp</result>
+			<result name="upEmp">/bootstrap/employee.jsp</result>
+		</action>
+		<!--  -->
+		<action name="ww_*" class="com.zkjAction.ZkjAction" method="{1}" >
+			<result name="ok" type="redirect">/bootstrap/Success.jsp</result>
+			<result name="rs" type="dispatcher">/bootstrap/publicProgram.jsp</result>
+			<result name="none">/bootstrap/publicProgram.jsp</result>
+			<result name="review1" type="redirectAction">ww_Reviewprojectservlet.action</result>
+			<result name="wode" type="dispatcher">/bootstrap/myxiangmu.jsp</result>
+			<result name="haha" type="dispatcher">/mujuan.jsp</result>
+			<result name="add">/index.jsp</result>
+			<result name="firm" type="dispatcher">/bootstrap/caiwuthree.jsp</result>
+			<result name="income" type="redirectAction">ww_finanaceconfirm.action</result>
+			<result name="jianyi" type="redirectAction">ww_Reviewprojectservlet.action</result>
+		</action>											
+		
+		<!--角色管理的验证  -->
+		<action name="Rol_*" class="com.YPGAction.Struts" method="{1}">
+			<result name="liRR">/bootstrap/partXG.jsp</result>
+			<result name="addle">/bootstrap/part.jsp</result>
+			<result name="seleRr">/bootstrap/part.jsp</result>
+			<result name="AXG">/bootstrap/partXG.jsp</result>
+			<result name="RAA">/bootstrap/partXG.jsp</result>
+			<result name="AAK">/bootstrap/part.jsp</result>
+			<result name="nnn">/bootstrap/part.jsp</result>
+		</action>
+		<!--权限管理的验证   -->
+		<action name="Aut_*" class="com.YPGAction.Struts" method="{1}">
+			<result name="listAuth">/bootstrap/Auth.jsp</result>
+			<result name="adAuth">/bootstrap/Auth.jsp</result>
+			<result name="listAu">/bootstrap/Auth.jsp</result>
+			
+		</action>
+		 <!--员工与角色管理的验证  -->
+	<!--	<action name="EmpRo_*" class="com.YPGAction.Struts" method="{1}">
+			<result name="listER">/bootstrap/EmployeeRole.jsp</result>
+			<result name="EmploRo">/bootstrap/EmployeeRole.jsp</result>
+			<result name="empRol">/bootstrap/EmployeeRole.jsp</result>
+		</action> -->
+		<!-- 权限与角色管理的验证   -->
+	<!--	<action name="AuRo_*" class="com.YPGAction.Struts" method="{1}">
+			<result name="liAuRo">/bootstrap/AuthRole.jsp</result>
+			<result name="AuRol">/bootstrap/AuthRole.jsp</result>
+			<result name="">/bootstrap/AuthRole.jsp</result>
+		</action> -->
+		<!-- 项目管理 -->
+		<action name="p_*" class="com.ZXLItem.ItemAction" method="{1}">
+			<result name="add">/bootstrap/Item.jsp</result>
+			<result name="sel">/bootstrap/Item.jsp</result>
+			<result name="up">/bootstrap/Item.jsp</result>
+			<result name="del">/bootstrap/Item.jsp</result>
+			<result name="get" type="redirectAction">p_select1.action</result>
+		</action>
+		<!-- 支出查询 -->
+		<action name="book_*" class="com.YXcexpend.Action" method="{1}">
+			<result name="cha">/bootstrap/caiwu2.jsp</result>
+			<result name="chadan">/bootstrap/dansearch.jsp</result>
+			<result name="mm">/bootstrap/caiwu2.jsp</result>
+			<result name="ss">/bootstrap/moneyApply.jsp</result>
+			<result name="pp">/bootstrap/dan.jsp</result>
+			<result name="delet">/bootstrap/caiwu2.jsp</result>
+			<result name="st" type="redirectAction">book_shen.action</result>
+			<result name="jia">/index.jsp</result>
+			<result name="qian">/bootstrap/fangkuan.jsp</result>
+			<result name="zhi" type="redirectAction">book_fang.action</result>
+			<result name="abc">/bootstrap/fangkuan.jsp</result>
+			<result name="ge">/bootstrap/userInfo.jsp</result>
+			<result name="renren">/bootstrap/userInfo.jsp</result>
+			<result name="oo">/bootstrap/XM.jsp</result>
+			<result name="sheng">/bootstrap/caiwu2.jsp</result>
+		</action>
+		<!-- 理事支出审核 -->
+		<action name="en_*" class="com.SZHzzsh.Action" method="{1}">
+			<result name="fenye">/bootstrap/lishibiao1111.jsp</result>
+			<result name="hao" type="redirectAction">en_fenye.action</result>
+		</action>
+		<!-- 理事项目审核 -->
+		<action name="enhao_*" class="com.SZHlssh.Action" method="{1}">
+			<result name="fenyeen">/bootstrap/lishixiangmu.jsp</result>
+			<result name="haoen" type="redirectAction">enhao_fenye1.action</result>
+		</action>
+		<!-- 支出统计查询 -->
+		<action name="enen_*" class="com.Select.Action" method="{1}">
+			<result name="fenye">/bootstrap/chaxun1.jsp</result>
+		</action>
+		<!-- 新闻管理 -->
+		<action name="n_*" class="com.ZXLnews.newsAction" method="{1}">
+			<result name="add">/bootstrap/news.jsp</result>
+			<result name="sel">/bootstrap/news.jsp</result>
+			<result name="up">/bootstrap/news.jsp</result>
+			<result name="del">/bootstrap/news.jsp</result>
+			<result name="seln">/bootstrap/news.jsp</result>
+		</action>
+	</package>
+</struts>    

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<package name="default" extends="struts-default">
+		<!-- 注册验证 -->
+		<action name="enroll_*" class="com.enroll.enrollAction" method="{1}">
+			<result name="add">/bootstrap/Home.jsp</result>
+		</action> 
+		<!-- 注册用户唯一性验证 -->
+		<action name="yanz_*" class="com.TMZyz.yanzhengAction" method="{1}">
+			<result name="error">/bootstrap/zhuce.jsp</result>
+			<result name="yanzheng">/bootstrap/Home.jsp</result>
+		</action>
+		<!-- 申请项目名是否存在 -->
+		<action name="xmsq_*" class="com.TMZyzxm.XmshenqAction" method="{1}">
+			<result name="error">/bootstrap/faqixiangmu1.jsp</result>
+		</action>
+		<!-- 登录验证 -->
+		<action name="us_*" class="com.TMZRingUp.RingUpAction" method="{1}">
+			<result name="error">/error.jsp</result>
+			<result name="success">/bootstrap/Zhuye.jsp</result>
+		</action>
+		<!-- 公益项目分页 -->
+		<action name="fy_*" class="com.TMZfenye.Action" method="{1}">
+			<result name="fenye">/bootstrap/gongyixiangmu.jsp</result>
+			<result name="sel">/bootstrap/gongyixiangmu.jsp</result>
+			<result name="query">/bootstrap/gongyixiangmu.jsp</result>
+		</action>
+		<action name="ff_*" class="com.TMZgy.GongyAction" method="{1}">
+			<result name="sele">/bootstrap/gongyixiangmu.jsp</result>
+		</action>
+		<!-- 认证个人信息是否通过 -->
+		<action name="sq_*" class="com.TMZSQ.shenqingAction" method="{1}">
+			<result name="status">/bootstrap/faqixiangmus.jsp</result>
+			<result name="statu">/bootstrap/moneySQ.jsp</result>
+			<result name="ss">/bootstrap/moneySQ.jsp</result>
+		</action>
+		<!-- 资金申请时查询可申请金额 -->
+		<action name="zj_*" class="com.TMZyzzj.ZijinyzAction" method="{1}">
+			<result name="zjyz">/bootstrap/moneySQ.jsp</result>
+		</action>
+	</package>
+	
+	
+	<!-- 项目申请验证 -->
+	<package name="default2" extends="struts-default" namespace="/bootstrap">
+	
+		<action name="ww_*" class="com.zkjAction.ZkjAction" method="{1}" >
+			<result name="ok" type="redirect">/index.jsp</result>
+			<result name="rs" type="dispatcher">/bootstrap/publicProgram.jsp</result>
+			<result name="review1" type="redirectAction">ww_Reviewprojectservlet.action</result>
+			<result name="wode" type="dispatcher">/bootstrap/myxiangmu.jsp</result>
+			<result name="haha" type="dispatcher">/mujuans.jsp</result>
+			<result name="add">/bootstrap/gongyixiangmu.jsp</result>
+			<result name="firm" type="dispatcher">/bootstrap/caiwuthree.jsp</result>
+			<result name="income" type="redirectAction">ww_finanaceconfirm.action</result>
+			<result name="yirenzheng">/bootstrap/faqixiangmus.jsp</result>
+			<result name="renzheng">/bootstrap/faqixiangmu.jsp</result>
+			<result name="upload">/bootstrap/faqixiangmus.jsp</result>
+			<result name="yijingrenzheng">/bootstrap/moneySQ.jsp</result>
+			<result name="weirenzheng">/bootstrap/faqixiangmu.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 项目管理验证 -->
+	<package name="default3" extends="struts-default">
+		<action name="l_*" class="com.ZXLitem.ItemAction" method="{1}">
+			<result name="sel">/bootstrap/gongyixiangmu.jsp</result>
+			<result name="query">/bootstrap/gongyixiangmu.jsp</result>
+			<result name="asd">/bootstrap/mujuans.jsp</result>
+		</action>
+		
+		<!-- 前台项目资金申请 -->
+		<action name="book_*" class="com.YXitem.Action" method="{1}">
+				<result name="jia">/index.jsp</result>
+				<result name="yh">/index.jsp</result>
+				<result name="pp">/bootstrap/moneySQ.jsp</result>
+				<result name="suan">/bootstrap/moneySQ.jsp</result>
+		</action>
+		<!-- 个人中心显示我的金额申请情况 -->
+		<action name="q_*" class="com.YXitem.Action" method="{1}">
+			<result name="qian">/bootstrap/wodeqian.jsp</result>
+		</action>
+	</package>
+	<!-- 个人中心我的捐款管理 -->
+	<package name="default4" extends="struts-default">
+		<action name="d_*" class="com.ZXLDonate.DonateAction" method="{1}">
+			<result name="sel">/bootstrap/gerenzhongxin.jsp</result>
+			<result name="fenye">/bootstrap/gerenzhongxin.jsp</result>
+		</action>
+	</package>
+</struts>    
